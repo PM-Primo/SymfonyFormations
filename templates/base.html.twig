@@ -14,6 +14,18 @@
         {% endblock %}
     </head>
     <body>
+
+        <nav>
+            <div id="nav_gauche">
+
+            </div>
+            <div id="nav_droite">
+                <a href="{{path("app_login")}}">Connexion</a>
+                <a href="{{path("app_register")}}">Inscription</a>
+            </div>
+
+        </nav>
+
         {% block body %}{% endblock %}
     </body>
 </html>
