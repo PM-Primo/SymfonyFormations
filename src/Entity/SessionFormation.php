@@ -72,9 +72,9 @@ class SessionFormation
         return $this;
     }
 
-    public function getDateDebut(): ?\DateTimeInterface
+    public function getDateDebut(): ?string
     {
-        return $this->date_debut;
+        return $this->date_debut->format("d-m-Y");
     }
 
     public function setDateDebut(\DateTimeInterface $date_debut): self
@@ -84,9 +84,9 @@ class SessionFormation
         return $this;
     }
 
-    public function getDateFin(): ?\DateTimeInterface
+    public function getDateFin(): ?string
     {
-        return $this->date_fin;
+        return $this->date_fin->format("d-m-Y");
     }
 
     public function setDateFin(\DateTimeInterface $date_fin): self
