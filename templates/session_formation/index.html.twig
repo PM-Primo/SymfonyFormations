@@ -7,9 +7,9 @@
 
     <h1>Sessions de formation</h1>
 
-    {% for session in sessions_formation %}
+    {% for session in sessions %}
 
-        {{session.intituleSession}}<br>
+        <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
         Du {{session.dateDebut}} au {{session.dateFin}}<br>
         {{session.nbPlaces}} places disponibles<br>
         <br>        

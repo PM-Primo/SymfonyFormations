@@ -16,11 +16,21 @@ class SessionFormationController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
 
-        $sessions_formation  = $doctrine->getRepository(SessionFormation::class)->findBy([],["date_debut"=>"ASC"] );
+        $sessions  = $doctrine->getRepository(SessionFormation::class)->findBy([],["date_debut"=>"ASC"] );
 
 
         return $this->render('session_formation/index.html.twig', [
-            'sessions_formation' => $sessions_formation
+            'sessions' => $sessions
+        ]);
+    }
+
+    /**
+     * @Route("/session/formation/{id}", name="show_session_formation")
+     */
+    public function show(SessionFormation $session): Response
+    {
+        return $this->render('session_formation/show.html.twig', [
+            'session' => $session
         ]);
     }
 }

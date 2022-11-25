@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de session{% endblock %}
+
+{% block body %}
+
+
+    <h1>Détail de session</h1>
+
+    <p>
+        {{session.intituleSession}}<br>
+        Du {{session.dateDebut}} au {{session.dateFin}}<br>
+        {{session.nbPlaces}} places disponibles
+    </p>
+
+
+{% endblock %}
