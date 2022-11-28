@@ -5,13 +5,24 @@
 {% block body %}
 
 
-    <h1>Détails de la session</h1>
+    <h1>{{session.intituleSession}}</h1>
+    <h2> Du {{session.dateDebut}} au {{session.dateFin}}<br></h2>
 
-    <p>
-        {{session.intituleSession}}<br>
-        Du {{session.dateDebut}} au {{session.dateFin}}<br>
-        {{session.nbPlaces}} places disponibles
-    </p>
+    {{session.nbPlaces}} places disponibles
+    
+    <h2>Modules compris dans la session</h2>
+
+    {% if session.programmes | length == 0 %}
+        <p>Aucun module pour l'instant</p>
+    {% else %}
+
+        {% for programme in session.programmes %}
+            {{programme.moduleFormation}} : {{programme.nbJours}} j<br>
+        {% endfor %}
+
+    {% endif %}
+
+
 
     <h2>Liste des participant.e.s à la session</h2>
 
