@@ -6,10 +6,24 @@
 
     <h1>Liste des modules de formation</h1>
 
-    {% for module in modules %}
+    {% for categorie in categories %}
+
+        <h2>{{categorie}}</h2>
+        
+        {% for module in modules %}
+
+            {% if module.categorie == categorie %}
+                {{module}}<br>
+            {% endif %}
+
+        {% endfor %}
+
+    {% endfor %}
+
+    {# {% for module in modules %}
 
         {{module.categorie}} : {{module}}<br>
 
-    {% endfor %}
+    {% endfor %} #}
 
 {% endblock %}
