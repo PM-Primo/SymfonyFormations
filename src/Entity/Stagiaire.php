@@ -105,9 +105,9 @@ class Stagiaire
         return $this;
     }
 
-    public function getDateNaissance(): ?\DateTimeInterface
+    public function getDateNaissance(): ?string
     {
-        return $this->date_naissance;
+        return $this->date_naissance->format("d/m/Y");
     }
 
     public function setDateNaissance(\DateTimeInterface $date_naissance): self
@@ -178,5 +178,9 @@ class Stagiaire
         }
 
         return $this;
+    }
+
+    public function __toString(): string{
+        return $this->prenom_stagiaire." ".$this->nom_stagiaire;
     }
 }
