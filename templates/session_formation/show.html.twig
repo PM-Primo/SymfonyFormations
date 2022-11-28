@@ -13,5 +13,17 @@
         {{session.nbPlaces}} places disponibles
     </p>
 
+    <h2>Liste des participant.e.s à la session</h2>
+
+    {% if session.participants | length == 0 %}
+        <p>Aucun participant à cette session</p>
+    {% else %}
+
+        {% for participant in session.participants %}
+            <a href="{{path('show_stagiaire', {'id':participant.id})}}">{{participant}}</a><br>
+        {% endfor %}
+
+    {% endif %}
+
 
 {% endblock %}
