@@ -18,7 +18,6 @@ class SessionFormationController extends AbstractController
 
         $sessions  = $doctrine->getRepository(SessionFormation::class)->findBy([],["date_debut"=>"ASC"] );
 
-
         return $this->render('session_formation/index.html.twig', [
             'sessions' => $sessions
         ]);

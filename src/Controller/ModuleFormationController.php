@@ -2,19 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\ModuleFormation;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ModuleFormationController extends AbstractController
 {
     /**
      * @Route("/module/formation", name="app_module_formation")
      */
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $modules  = $doctrine->getRepository(ModuleFormation::class)->findBy([],["categorie"=>"ASC"]);
+
         return $this->render('module_formation/index.html.twig', [
-            'controller_name' => 'ModuleFormationController',
+            'modules' => $modules
         ]);
     }
 }
