@@ -65,6 +65,16 @@ class CategorieRepository extends ServiceEntityRepository
 
         // return $query->getResult();
 
+
+        // REQUETE SQL FONCTIONNELLE (TESTEE DANS HEIDI)
+        //
+        // SELECT c.nom_categorie
+        // FROM programme p
+        // INNER JOIN module_formation m ON p.module_formation_id = m.id
+        // INNER JOIN categorie c ON m.categorie_id = c.id
+        // WHERE p.session_formation_id = 7
+        // GROUP BY c.nom_categorie
+
     }
 
 //    /**
