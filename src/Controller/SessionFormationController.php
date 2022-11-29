@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\SessionFormation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,10 +35,15 @@ class SessionFormationController extends AbstractController
     /**
      * @Route("/session/formation/{id}", name="show_session_formation")
      */
-    public function show(SessionFormation $session): Response
+    public function show(SessionFormation $session, ManagerRegistry $doctrine): Response
     {
+
+        // $categories = $doctrine->getRepository(Categorie::class)->categoriesSession($session);
+        $categories = $doctrine->getRepository(Categorie::class)->findBy([],[]);
+
         return $this->render('session_formation/show.html.twig', [
-            'session' => $session
+            'session' => $session,
+            'categories' => $categories
         ]);
     }
 }

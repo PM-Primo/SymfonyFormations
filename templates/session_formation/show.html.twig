@@ -12,16 +12,26 @@
     
     <h2>Modules compris dans la session</h2>
 
+
+
     {% if session.programmes | length == 0 %}
         <p>Aucun module pour l'instant</p>
     {% else %}
+    
+        {% for categorie in categories %}
+               
+            <h2>{{categorie}}</h2>
 
-        {% for programme in session.programmes %}
-            {{programme.moduleFormation}} : {{programme.nbJours}} j<br>
+            {% for programme in session.programmes %}
+                {% if programme.moduleFormation.categorie == categorie %}
+                    {{programme.moduleFormation}} : {{programme.nbJours}} j<br>
+                {% endif %}
+            {% endfor %}
+
         {% endfor %}
 
-    {% endif %}
 
+    {% endif %}
 
 
     <h2>Liste des participant.e.s à la session</h2>

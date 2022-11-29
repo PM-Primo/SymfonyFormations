@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Categorie;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Programme;
+use App\Entity\ModuleFormation;
+use App\Entity\SessionFormation;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Categorie>
@@ -37,6 +40,31 @@ class CategorieRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function categoriesSession(SessionFormation $session){
+
+        return $this->createQueryBuilder('c')
+        ->from('moduleFormation','mf')
+        ->join('mf.programme', 'p')
+        ->andWhere('p.sessionFormation = :sess')
+        ->setParameter('sess', $session)
+        ->groupBy('c.nom_categorie')
+        ->getQuery()
+        ->getResult();
+
+        // $entityManager = $this->getEntityManager();
+
+        // $query = $entityManager->createQuery(
+        //     'SELECT mf.categorie
+        //     FROM App\Entity\moduleFormation mf
+        //     INNER JOIN mf.programmes p
+        //     WHERE p.sessionFormation = :sess
+        //     GROUP BY mf.categorie')
+        //     ->setParameter('sess', $session);
+
+        // return $query->getResult();
+
     }
 
 //    /**
