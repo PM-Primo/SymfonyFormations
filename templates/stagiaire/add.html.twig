@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un stagiaire{% endblock %}
+
+{% block body %}
+
+    {% if edit %}
+        <h1>Éditer le profil d'un stagiaire</h1>
+    {% else %}
+        <h1>Ajouter un stagiaire</h1>
+    {% endif %}
+
+    {{ form_start(formAddStagiaire) }}
+
+        {{ form_row(formAddStagiaire.prenom_stagiaire) }}
+        {{ form_row(formAddStagiaire.nom_stagiaire) }}
+        {{ form_row(formAddStagiaire.sexe) }}
+        {{ form_row(formAddStagiaire.date_naissance) }}
+        {{ form_row(formAddStagiaire.ville) }}
+        {{ form_row(formAddStagiaire.email) }}
+        {{ form_row(formAddStagiaire.telephone) }}
+
+    {{ form_end(formAddStagiaire) }}
+
+
+{% endblock %}

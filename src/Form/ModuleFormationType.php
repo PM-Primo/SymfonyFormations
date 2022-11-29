@@ -22,8 +22,6 @@ class ModuleFormationType extends AbstractType
             ->add('submit', SubmitType::class, ["attr" => ["class" => "btn btn-success"]])
         ;
 
-        
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
