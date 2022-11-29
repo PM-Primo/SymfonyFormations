@@ -39,6 +39,40 @@ class SessionFormationRepository extends ServiceEntityRepository
         }
     }
 
+    public function sessionsPassees()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+                ->andWhere('s.date_fin < :now')
+                ->setParameter('now', $now)
+                ->orderBy('s.date_debut', 'ASC')
+                ->getQuery()
+                ->getResult();
+    }
+
+    public function sessionsEnCours()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+                ->andWhere('s.date_debut <= :now')
+                ->andWhere('s.date_fin >= :now')
+                ->setParameter('now', $now)
+                ->orderBy('s.date_debut', 'ASC')
+                ->getQuery()
+                ->getResult();
+    }
+
+    public function sessionsAVenir()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+                ->andWhere('s.date_debut > :now')
+                ->setParameter('now', $now)
+                ->orderBy('s.date_debut', 'ASC')
+                ->getQuery()
+                ->getResult();
+    }
+
 //    /**
 //     * @return SessionFormation[] Returns an array of SessionFormation objects
 //     */

@@ -6,7 +6,9 @@
 
     <h1>Sessions de formation</h1>
 
-    {% for session in sessions %}
+    <h2>Sessions en cours</h2>
+
+    {% for session in sessionsEnCours %}
 
         <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
         Du {{session.dateDebut}} au {{session.dateFin}}<br>
@@ -14,5 +16,28 @@
         <br>        
 
     {% endfor %}
+
+    <h2>Sessions à venir</h2>
+
+    {% for session in sessionsAVenir %}
+
+        <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
+        Du {{session.dateDebut}} au {{session.dateFin}}<br>
+        {{session.nbPlaces}} places disponibles<br>
+        <br>        
+
+    {% endfor %}
+
+    <h2>Sessions passées</h2>
+
+    {% for session in sessionsPassees %}
+
+        <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
+        Du {{session.dateDebut}} au {{session.dateFin}}<br>
+        {{session.nbPlaces}} places disponibles<br>
+        <br>        
+
+    {% endfor %}
+
 
 {% endblock %}
