@@ -41,7 +41,8 @@
     {% else %}
 
         {% for participant in session.participants %}
-            <a href="{{path('show_stagiaire', {'id':participant.id})}}">{{participant}}</a><br>
+            <a href="{{path('show_stagiaire', {'id':participant.id})}}">{{participant}}</a> 
+            <a href="{{path('removefrom_session_formation', {'idsess':session.id , 'idstag':participant.id})}}">[désinscrire]</a><br>
         {% endfor %}
 
     {% endif %}

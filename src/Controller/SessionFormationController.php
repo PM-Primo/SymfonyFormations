@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Stagiaire;
 use App\Entity\SessionFormation;
 use App\Form\SessionFormationType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class SessionFormationController extends AbstractController
 {
@@ -64,8 +66,8 @@ class SessionFormationController extends AbstractController
         ]);
 
     }
-
-
+    
+    
     /**
      * @Route("/session/formation/{id}/delete", name="delete_session_formation")
      */
@@ -74,23 +76,40 @@ class SessionFormationController extends AbstractController
         $entityManager = $doctrine->getManager();
         $entityManager->remove($session);
         $entityManager->flush();
-    
+        
         return $this->redirectToRoute('app_session_formation');
     }
-
-
+        
+    
     /**
      * @Route("/session/formation/{id}", name="show_session_formation")
      */
     public function show(SessionFormation $session, ManagerRegistry $doctrine): Response
     {
-
+        
         // $categories = $doctrine->getRepository(Categorie::class)->categoriesSession($session);
         $categories = $doctrine->getRepository(Categorie::class)->findBy([],[]);
-
+        
         return $this->render('session_formation/show.html.twig', [
             'session' => $session,
             'categories' => $categories
         ]);
     }
+
+
+    /**
+     * @Route("/session/formation/{idsess}/remove/{idstag}", name="removefrom_session_formation")
+     * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
+     * @ParamConverter("stagiaire", options={"mapping": {"idstag": "id"}})
+     */
+    public function removeParticipant(ManagerRegistry $doctrine, SessionFormation $session, Stagiaire $stagiaire){
+
+        $em = $doctrine->getManager();
+        $session->removeParticipant($stagiaire);
+        $em->persist($session);//Pas nécessaire dans ce cas, il sert principalement lorsqu'un ajoute des choses en bdd (ici on en retire seulement)
+        $em->flush();
+        return $this->redirectToRoute('app_session_formation');
+
+    }
+
 }
