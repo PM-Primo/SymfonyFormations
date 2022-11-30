@@ -15,7 +15,7 @@
         Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
         {{stagiaire.email}}<br>
         {{stagiaire.telephone}}<br>
-        <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}">Éditer</a><br>
+        <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}">Éditer</a> / <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}">Supprimer</a><br>
         <br>        
 
     {% endfor %}
