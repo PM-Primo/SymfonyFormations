@@ -10,7 +10,16 @@
         <h1>Ajouter une session</h1>
     {% endif %}
 
-    {{ form(formAddSessionFormation) }}
+    {# {{ form(formAddSessionFormation) }} #}
+    {{ form_start(formAddSessionFormation) }}
+
+        {{ form_row(formAddSessionFormation.intitule_session) }}
+        {{ form_row(formAddSessionFormation.date_debut) }}
+        {{ form_row(formAddSessionFormation.date_fin) }}
+        {{ form_row(formAddSessionFormation.nb_places) }}
+
+
+    {{ form_end(formAddSessionFormation) }}
 
 
 {% endblock %}

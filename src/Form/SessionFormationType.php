@@ -22,7 +22,6 @@ class SessionFormationType extends AbstractType
             ->add('date_debut', DateType::class, ['widget' => 'single_text', "attr" => ["class" => "form-control"]])
             ->add('date_fin', DateType::class, ['widget' => 'single_text', "attr" => ["class" => "form-control"]])
             ->add('nb_places', IntegerType::class, ["attr" => ["class" => "form-control"]])
-            ->add('participants', EntityType::class, ['class' => Stagiaire::class, "attr" => ["class" => "form-control"],'multiple' => true, 'expanded' => false,])
 
             ->add('submit', SubmitType::class, ["attr" => ["class" => "btn btn-success"]])
 

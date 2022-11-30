@@ -15,6 +15,7 @@
         <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
         Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
         {{session.nbPlaces}} places disponibles<br>
+        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a><br>
         <br>        
 
     {% endfor %}
@@ -26,6 +27,7 @@
         <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
         Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
         {{session.nbPlaces}} places disponibles<br>
+        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a><br>
         <br>        
 
     {% endfor %}
@@ -37,6 +39,7 @@
         <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
         Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
         {{session.nbPlaces}} places disponibles<br>
+        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a><br>
         <br>        
 
     {% endfor %}
