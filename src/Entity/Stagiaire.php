@@ -105,14 +105,12 @@ class Stagiaire
         return $this;
     }
 
-    public function getDateNaissance(): ?string
+    public function getDateNaissance(): ?\DateTimeInterface
     {
         if($this->date_naissance){
-            return $this->date_naissance->format("d/m/Y");
+            return $this->date_naissance;
         }
-        else{
-            return null;
-        }
+
     }
 
     public function setDateNaissance(\DateTimeInterface $date_naissance): self

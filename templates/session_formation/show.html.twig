@@ -6,7 +6,7 @@
 
 
     <h1>{{session.intituleSession}}</h1>
-    <h2> Du {{session.dateDebut}} au {{session.dateFin}}<br></h2>
+    <h2> Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br></h2>
 
     {{session.nbPlaces}} places disponibles
     

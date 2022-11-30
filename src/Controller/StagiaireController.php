@@ -25,6 +25,7 @@ class StagiaireController extends AbstractController
 
     /**
      * @Route("/stagiaire/add", name="add_stagiaire")
+     * @Route("/stagiaire/{id}/edit", name="edit_stagiaire")
      */
     public function add(ManagerRegistry $doctrine ,Stagiaire $stagiaire = null, Request $request): Response
     {
