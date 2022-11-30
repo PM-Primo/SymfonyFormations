@@ -9,11 +9,23 @@
 
     <p>
         {{stagiaire}} ({{stagiaire.sexe}})<br>
-        Né(e) le {{stagiaire.dateNaissance}} à {{stagiaire.ville}}<br>
+        Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
         {{stagiaire.email}}<br>
         {{stagiaire.telephone}}<br>
         <br>    
     </p>
 
+
+    {% if stagiaire.sessionsFormation | length == 0 %}
+        <p>Inscrit(e) à aucune session pour l'instant</p>
+    {% else %}
+
+        <h2>Inscrit(e) aux sessions :</h2>
+
+        {% for session in stagiaire.sessionsFormation %}
+            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session}}</a><br>
+        {% endfor %}
+
+    {% endif %}
 
 {% endblock %}

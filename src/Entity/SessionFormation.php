@@ -161,4 +161,8 @@ class SessionFormation
 
         return $this;
     }
+
+    public function __toString():string{
+        return $this->intitule_session." (".$this->date_debut->format("d-m-Y")." - ".$this->date_fin->format("d-m-Y").")";
+    }
 }
