@@ -30,6 +30,7 @@ class ModuleFormationController extends AbstractController
 
     /**
      * @Route("module/formation/add", name="add_module_formation")
+     * @Route("/module/formation/{id}/edit", name="edit_module_formation")
      */
     public function add(ManagerRegistry $doctrine, ModuleFormation $module = null, Request $request){
 
