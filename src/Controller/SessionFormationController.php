@@ -67,6 +67,19 @@ class SessionFormationController extends AbstractController
 
 
     /**
+     * @Route("/session/formation/{id}/delete", name="delete_session_formation")
+     */
+    public function delete(ManagerRegistry $doctrine, SessionFormation $session): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($session);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('app_session_formation');
+    }
+
+
+    /**
      * @Route("/session/formation/{id}", name="show_session_formation")
      */
     public function show(SessionFormation $session, ManagerRegistry $doctrine): Response
