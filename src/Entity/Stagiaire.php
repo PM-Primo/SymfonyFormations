@@ -107,10 +107,7 @@ class Stagiaire
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
-        if($this->date_naissance){
-            return $this->date_naissance;
-        }
-
+        return $this->date_naissance;
     }
 
     public function setDateNaissance(\DateTimeInterface $date_naissance): self
