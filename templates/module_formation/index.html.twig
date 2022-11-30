@@ -16,7 +16,7 @@
         {% for module in modules %}
 
             {% if module.categorie == categorie %}
-                {{module}} <a href="{{path('edit_module_formation',{'id':module.id})}}">Editer</a><br>
+                {{module}} <a href="{{path('edit_module_formation',{'id':module.id})}}">Editer</a> / <a href="{{path('delete_module_formation',{'id':module.id})}}">Supprimer</a><br>
             {% endif %}
 
         {% endfor %}

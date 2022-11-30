@@ -57,4 +57,17 @@ class ModuleFormationController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/module/formation/{id}/delete", name="delete_module_formation")
+     */
+    public function delete(ManagerRegistry $doctrine, ModuleFormation $module): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($module);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('app_module_formation');
+
+    }
 }
