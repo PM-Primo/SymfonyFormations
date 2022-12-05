@@ -24,7 +24,7 @@
 
             {% for programme in session.programmes %}
                 {% if programme.moduleFormation.categorie == categorie %}
-                    {{programme.moduleFormation}} : {{programme.nbJours}} j<br>
+                    {{programme.moduleFormation}} : {{programme.nbJours}} j <a href="{{path('delete_programme', {'idsess':session.id , 'idprog':programme.id})}}">[déprogrammer]</a><br>
                 {% endif %}
             {% endfor %}
 

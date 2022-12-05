@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Entity\SessionFormation;
 use App\Form\SessionFormationType;
@@ -132,6 +133,20 @@ class SessionFormationController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
 
+    }
+
+    /**
+     * @Route("/session/formation/{idsess}/deleteprog/{idprog}", name="delete_programme")
+     * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
+     * @ParamConverter("programme", options={"mapping": {"idprog": "id"}})
+     */
+    public function deleteProgramme(ManagerRegistry $doctrine, SessionFormation $session, Programme $programme): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($programme);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
     }
 
 
