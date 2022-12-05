@@ -53,12 +53,12 @@
         <p>Aucun participant à cette session</p>
     {% else %}
 
-    {% for stagiaire in nonInscrits %}
-        <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}">{{stagiaire}}</a> <br>
-        {# <a href="{{path('removefrom_session_formation', {'idsess':session.id , 'idstag':participant.id})}}">[désinscrire]</a> #}
-    {% endfor %}
+        {% for stagiaire in nonInscrits %}
+            <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}">{{stagiaire}}</a> 
+            <a href="{{path('addto_session_formation', {'idsess':session.id , 'idstag':stagiaire.id})}}">[inscrire]</a><br>
+        {% endfor %}
 
-{% endif %}
+    {% endif %}
 
 
 {% endblock %}

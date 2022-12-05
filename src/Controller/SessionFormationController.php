@@ -112,8 +112,25 @@ class SessionFormationController extends AbstractController
         $session->removeParticipant($stagiaire);
         $em->persist($session);//Pas nécessaire dans ce cas, il sert principalement lorsqu'un ajoute des choses en bdd (ici on en retire seulement)
         $em->flush();
-        return $this->redirectToRoute('app_session_formation');
+        return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
 
     }
+
+    /**
+     * @Route("/session/formation/{idsess}/add/{idstag}", name="addto_session_formation")
+     * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
+     * @ParamConverter("stagiaire", options={"mapping": {"idstag": "id"}})
+     */
+    public function addParticipant(ManagerRegistry $doctrine, SessionFormation $session, Stagiaire $stagiaire){
+
+        $em = $doctrine->getManager();
+        $session->addParticipant($stagiaire);
+        $em->persist($session);
+        $em->flush();
+        return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
+
+    }
+
+
 
 }
