@@ -33,6 +33,15 @@
 
     {% endif %}
 
+    <h2>Modules non programmés</h2>
+
+    {% if nonProgrammes | length == 0 %}
+        <p>Aucun module à programmer</p>
+    {% else %}
+            {% for module in nonProgrammes %}
+                {{module}}<br>
+            {% endfor %}
+    {% endif %}
 
     <h2>Liste des participant.e.s à la session</h2>
 
