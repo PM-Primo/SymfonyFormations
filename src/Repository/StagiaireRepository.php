@@ -39,6 +39,31 @@ class StagiaireRepository extends ServiceEntityRepository
         }
     }
 
+    public function findNonInscrits($session_id){
+
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+        $qb->select('s')
+            ->from('App\Entity\Stagiaire', 's')
+            ->leftJoin('s.sessionsFormation', 'se')
+            ->where('se.id = :id')
+        ;
+
+        $sub = $em->createQueryBuilder();
+        $sub->select('st')
+            ->from('App\Entity\Stagiaire', 'st')
+            ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('st.nom_stagiaire')
+        ;
+
+        $query = $sub->getQuery();
+        return $query->getResult();
+
+    }
+
 //    /**
 //     * @return Stagiaire[] Returns an array of Stagiaire objects
 //     */

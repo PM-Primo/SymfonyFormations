@@ -6,8 +6,10 @@ use App\Entity\Categorie;
 use App\Entity\Stagiaire;
 use App\Entity\SessionFormation;
 use App\Form\SessionFormationType;
+use App\Repository\StagiaireRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\SessionFormationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -84,15 +86,17 @@ class SessionFormationController extends AbstractController
     /**
      * @Route("/session/formation/{id}", name="show_session_formation")
      */
-    public function show(SessionFormation $session, ManagerRegistry $doctrine): Response
+    public function show(SessionFormation $session, ManagerRegistry $doctrine, StagiaireRepository $sr): Response
     {
         
         // $categories = $doctrine->getRepository(Categorie::class)->categoriesSession($session);
-        $categories = $doctrine->getRepository(Categorie::class)->findBy([],[]);
+        $categories = $doctrine->getRepository(Categorie::class)->findBy([],[]); 
+        $nonInscrits = $sr->findNonInscrits($session->getId());
         
         return $this->render('session_formation/show.html.twig', [
             'session' => $session,
-            'categories' => $categories
+            'categories' => $categories,
+            'nonInscrits' => $nonInscrits
         ]);
     }
 
