@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\SessionFormationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -22,6 +23,7 @@ class SessionFormationController extends AbstractController
 {
     /**
      * @Route("/session/formation", name="app_session_formation")
+     * @IsGranted("ROLE_USER")
      */
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -45,6 +47,7 @@ class SessionFormationController extends AbstractController
     /**
      * @Route("/session/formation/add", name="add_session_formation")
      * @Route("/session/formation/{id}/edit", name="edit_session_formation")
+     * @IsGranted("ROLE_USER")
      */
     public function add(ManagerRegistry $doctrine ,SessionFormation $session = null, Request $request): Response
     {
@@ -75,6 +78,7 @@ class SessionFormationController extends AbstractController
     
     /**
      * @Route("/session/formation/{id}/delete", name="delete_session_formation")
+     * @IsGranted("ROLE_USER")
      */
     public function delete(ManagerRegistry $doctrine, SessionFormation $session): Response
     {
@@ -88,6 +92,7 @@ class SessionFormationController extends AbstractController
     
     /**
      * @Route("/session/formation/{id}", name="show_session_formation")
+     * @IsGranted("ROLE_USER")
      */
     public function show(SessionFormation $session, ManagerRegistry $doctrine, StagiaireRepository $sr, ModuleFormationRepository $mr): Response
     {
@@ -110,6 +115,7 @@ class SessionFormationController extends AbstractController
      * @Route("/session/formation/{idsess}/remove/{idstag}", name="removefrom_session_formation")
      * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
      * @ParamConverter("stagiaire", options={"mapping": {"idstag": "id"}})
+     * @IsGranted("ROLE_USER")
      */
     public function removeParticipant(ManagerRegistry $doctrine, SessionFormation $session, Stagiaire $stagiaire){
 
@@ -125,6 +131,7 @@ class SessionFormationController extends AbstractController
      * @Route("/session/formation/{idsess}/add/{idstag}", name="addto_session_formation")
      * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
      * @ParamConverter("stagiaire", options={"mapping": {"idstag": "id"}})
+     * @IsGranted("ROLE_USER")
      */
     public function addParticipant(ManagerRegistry $doctrine, SessionFormation $session, Stagiaire $stagiaire){
 
@@ -140,6 +147,7 @@ class SessionFormationController extends AbstractController
      * @Route("/session/formation/{idsess}/deleteprog/{idprog}", name="delete_programme")
      * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
      * @ParamConverter("programme", options={"mapping": {"idprog": "id"}})
+     * @IsGranted("ROLE_USER")
      */
     public function deleteProgramme(ManagerRegistry $doctrine, SessionFormation $session, Programme $programme): Response
     {
@@ -154,6 +162,7 @@ class SessionFormationController extends AbstractController
      * @Route("/session/formation/{idsess}/addprog/{idmod}", name="add_programme")
      * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
      * @ParamConverter("module", options={"mapping": {"idmod": "id"}})
+     * @IsGranted("ROLE_USER")
      */
     public function addProgramme(ManagerRegistry $doctrine, SessionFormation $session, ModuleFormation $module): Response
     {

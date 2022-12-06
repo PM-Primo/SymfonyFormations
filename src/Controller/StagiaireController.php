@@ -8,12 +8,14 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
     /**
      * @Route("/stagiaire", name="app_stagiaire")
+     * @IsGranted("ROLE_USER")
      */
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -26,6 +28,7 @@ class StagiaireController extends AbstractController
     /**
      * @Route("/stagiaire/add", name="add_stagiaire")
      * @Route("/stagiaire/{id}/edit", name="edit_stagiaire")
+     * @IsGranted("ROLE_USER")
      */
     public function add(ManagerRegistry $doctrine ,Stagiaire $stagiaire = null, Request $request): Response
     {
@@ -56,6 +59,7 @@ class StagiaireController extends AbstractController
 
     /**
      * @Route("/stagiaire/{id}/delete", name="delete_stagiaire")
+     * @IsGranted("ROLE_USER")
      */
     public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
     {
@@ -68,6 +72,7 @@ class StagiaireController extends AbstractController
 
     /**
      * @Route("/stagiaire/{id}", name="show_stagiaire")
+     * @IsGranted("ROLE_USER")
      */
     public function show(Stagiaire $stagiaire): Response
     {
