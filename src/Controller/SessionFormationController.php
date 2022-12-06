@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
+use App\Entity\ModuleFormation;
 use App\Entity\SessionFormation;
 use App\Form\SessionFormationType;
 use App\Repository\StagiaireRepository;
@@ -146,6 +147,31 @@ class SessionFormationController extends AbstractController
         $entityManager->remove($programme);
         $entityManager->flush();
     
+        return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
+    }
+
+    /**
+     * @Route("/session/formation/{idsess}/addprog/{idmod}", name="add_programme")
+     * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
+     * @ParamConverter("module", options={"mapping": {"idmod": "id"}})
+     */
+    public function addProgramme(ManagerRegistry $doctrine, SessionFormation $session, ModuleFormation $module): Response
+    {
+
+        $em = $doctrine->getManager();
+
+        $nbJours = filter_input(INPUT_POST, "nbJours", FILTER_VALIDATE_INT);
+
+        $programme = new Programme;
+        $programme->setNbJours($nbJours);
+        $programme->setSessionFormation($session);
+        $programme->setModuleFormation($module);
+        $em->persist($programme);
+
+        $session->addProgramme($programme);
+        $em->persist($session);
+        $em->flush();
+
         return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
     }
 
