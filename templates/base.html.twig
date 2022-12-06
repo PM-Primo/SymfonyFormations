@@ -16,14 +16,20 @@
     <body>
 
         <nav>
-            <div id="nav_gauche">
-                <a href="{{path("app_module_formation")}}">Modules</a>
-                <a href="{{path("app_session_formation")}}">Sessions</a>
-                <a href="{{path("app_stagiaire")}}">Stagiaires</a>
-            </div>
+            {% if app.user %}
+                <div id="nav_gauche">
+                    <a href="{{path("app_module_formation")}}">Modules</a>
+                    <a href="{{path("app_session_formation")}}">Sessions</a>
+                    <a href="{{path("app_stagiaire")}}">Stagiaires</a>
+                </div>
+            {% endif %}
             <div id="nav_droite">
-                <a href="{{path("app_login")}}">Connexion</a>
-                <a href="{{path("app_register")}}">Inscription</a>
+                {% if app.user %}
+                    <a href="{{path("app_logout")}}">Déconnexion</a>
+                {% else %}
+                    <a href="{{path("app_login")}}">Connexion</a>
+                {% endif %}
+                {% if not app.user %} <a href="{{path("app_register")}}">Inscription</a>{% endif %}
             </div>
 
         </nav>
