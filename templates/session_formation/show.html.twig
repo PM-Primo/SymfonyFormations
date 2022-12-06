@@ -8,8 +8,15 @@
     <h1>{{session.intituleSession}}</h1>
     <h2> Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br></h2>
 
-    {{session.nbPlaces}} places disponibles
-    
+    {% if session.nbPlaces != session.participants|length %}
+
+        {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles
+
+    {% else %}
+        Session complète !
+    {% endif %}
+
+
     <h2>Modules compris dans la session</h2>
 
 
