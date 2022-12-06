@@ -75,8 +75,11 @@
     {% else %}
 
         {% for stagiaire in nonInscrits %}
-            <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}">{{stagiaire}}</a> 
-            <a href="{{path('addto_session_formation', {'idsess':session.id , 'idstag':stagiaire.id})}}">[inscrire]</a><br>
+            <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}">{{stagiaire}}</a>
+            {% if session.participants|length < session.nbPlaces %}
+                <a href="{{path('addto_session_formation', {'idsess':session.id , 'idstag':stagiaire.id})}}">[inscrire]</a>
+            {% endif %}
+            <br>
         {% endfor %}
 
     {% endif %}
