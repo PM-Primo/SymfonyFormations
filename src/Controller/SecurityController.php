@@ -52,15 +52,12 @@ class SecurityController extends AbstractController
      */
     public function promote(ManagerRegistry $doctrine, User $user): Response
     {
-        $roles = $user->getRoles();
-        array_push($roles, "ROLE_ADMIN");
-        $user->setRoles($roles);
+        $user->addRole("ROLE_ADMIN");
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_users');
-
     }
 
 
