@@ -5,16 +5,18 @@
 {% block body %}
 
 
-    <h1>Détails du stagiaire</h1>
+    <h1>{{stagiaire}}</h1>
 
     <p>
         {{stagiaire}} ({{stagiaire.sexe}})<br>
         Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
         {{stagiaire.email}}<br>
-        {{stagiaire.telephone}}<br>
-        <br>    
+        {{stagiaire.telephone}}<br>    
     </p>
-
+    <p>
+        <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}">Éditer</a> 
+        / <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}">Supprimer</a>
+    </p>
 
     {% if stagiaire.sessionsFormation | length == 0 %}
         <p>Inscrit(e) à aucune session pour l'instant</p>
