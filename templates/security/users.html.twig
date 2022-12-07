@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panneau d'administration{% endblock %}
+
+{% block body %}
+
+    <h1>Panneau d'administration</h1>
+
+    {% for user in users %}
+        {% if user != app.user %}
+            {{user.pseudo}}<br>
+            {{user.email}}<br>
+            <br>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
