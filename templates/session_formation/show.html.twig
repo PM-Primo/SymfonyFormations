@@ -52,7 +52,7 @@
             {% for module in nonProgrammes %}
                 {{module}}
                 <form method="POST" action="{{ path('add_programme', {'idsess' : session.id,'idmod' : module.id }) }}">
-                    <input type="number" min="1" id="nbJours" name="nbJours"/> jours
+                    <input type="number" min="1" id="nbJours" name="nbJours" required> jours
                     <button type="submit" name="submit">+</button>
                 </form>
                 <br>
