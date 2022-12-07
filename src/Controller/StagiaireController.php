@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
+use App\Entity\SessionFormation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class StagiaireController extends AbstractController
 {
@@ -68,6 +70,23 @@ class StagiaireController extends AbstractController
         $entityManager->flush();
     
         return $this->redirectToRoute('app_stagiaire');
+    }
+
+    
+    /**
+     * @Route("/stagiaire/{idstag}/removefrom/{idsess}", name="removesessionfrom_stagiaire")
+     * @ParamConverter("session", options={"mapping" : {"idsess": "id"}})
+     * @ParamConverter("stagiaire", options={"mapping": {"idstag": "id"}})
+     * @IsGranted("ROLE_USER")
+     */
+    public function removeParticipant(ManagerRegistry $doctrine, SessionFormation $session, Stagiaire $stagiaire){
+
+        $em = $doctrine->getManager();
+        $session->removeParticipant($stagiaire);
+        $em->persist($session);//Pas nécessaire dans ce cas, il sert principalement lorsqu'un ajoute des choses en bdd (ici on en retire seulement)
+        $em->flush();
+        return $this->redirectToRoute('show_stagiaire', ['id' => $stagiaire->getId()]);
+
     }
 
     /**

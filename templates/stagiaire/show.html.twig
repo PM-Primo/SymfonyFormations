@@ -23,7 +23,8 @@
         <h2>Inscrit(e) aux sessions :</h2>
 
         {% for session in stagiaire.sessionsFormation %}
-            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session}}</a><br>
+            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session}}</a> 
+            <a href="{{path('removesessionfrom_stagiaire', {'idsess':session.id , 'idstag':stagiaire.id})}}">[désinscrire]</a><br>
         {% endfor %}
 
     {% endif %}
