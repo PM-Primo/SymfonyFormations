@@ -16,6 +16,10 @@
         Session complète !
     {% endif %}
 
+    <p>
+        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> /
+        <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a>
+    </p>
 
     <h2>Modules compris dans la session</h2>
 

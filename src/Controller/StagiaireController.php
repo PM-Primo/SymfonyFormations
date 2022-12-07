@@ -47,7 +47,7 @@ class StagiaireController extends AbstractController
             $entityManager->persist($stagiaire); //équivalent de prepare()
             $entityManager->flush(); //équivalent de exacute()
 
-            return $this->redirectToRoute('app_stagiaire');
+            return $this->redirectToRoute('show_stagiaire', ['id' => $stagiaire->getId()]);
         }
 
         //Vue pour afficher le formulaire d'ajout

@@ -64,7 +64,7 @@ class SessionFormationController extends AbstractController
             $entityManager->persist($session); //équivalent de prepare()
             $entityManager->flush(); //équivalent de exacute()
 
-            return $this->redirectToRoute('app_session_formation');
+            return $this->redirectToRoute('show_session_formation', ['id' => $session->getId()]);
         }
 
         //Vue pour afficher le formulaire d'ajout
