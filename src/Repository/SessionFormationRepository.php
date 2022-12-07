@@ -45,7 +45,7 @@ class SessionFormationRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
                 ->andWhere('s.date_fin < :now')
                 ->setParameter('now', $now)
-                ->orderBy('s.date_debut', 'ASC')
+                ->orderBy('s.date_debut', 'DESC')
                 ->getQuery()
                 ->getResult();
     }
