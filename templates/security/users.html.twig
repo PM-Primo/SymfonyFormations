@@ -10,7 +10,11 @@
         {% if user != app.user %}
             {{user.pseudo}}<br>
             {{user.email}}<br>
-            <a href="{{path('admin_promote', {'id':user.id})}}">Promouvoir</a><br>
+            {% if not user.isAdmin %}
+                <a href="{{path('admin_promote', {'id':user.id})}}">Promouvoir</a><br>
+            {% else %}
+                <span>[Administrateur]</span>
+            {% endif %}
             <br>
         {% endif %}
     {% endfor %}
