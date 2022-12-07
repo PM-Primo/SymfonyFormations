@@ -10,6 +10,7 @@
         {% if user != app.user %}
             {{user.pseudo}}<br>
             {{user.email}}<br>
+            <a href="{{path('admin_promote', {'id':user.id})}}">Promouvoir</a><br>
             <br>
         {% endif %}
     {% endfor %}

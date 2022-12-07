@@ -44,7 +44,26 @@ class SecurityController extends AbstractController
         $users  = $doctrine->getRepository(User::class)->findBy([],["pseudo"=>"ASC"] );
         return $this->render('security/users.html.twig', ['users' => $users]);
     
+        
     }
+
+    /**
+     * @Route("/admin/promote/{id}", name="admin_promote")
+     */
+    public function promote(ManagerRegistry $doctrine, User $user): Response
+    {
+        $roles = $user->getRoles();
+        array_push($roles, "ROLE_ADMIN");
+        $user->setRoles($roles);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_users');
+
+    }
+
+
 
 
     
