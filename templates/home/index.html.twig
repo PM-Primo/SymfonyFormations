@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}FormaCenter{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur FormaCenter</h1>
+    <section class="home__section section">
 
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a nibh non neque semper molestie vel eu ipsum. In nec diam turpis. 
-        Vestibulum posuere ullamcorper ornare. Morbi interdum tellus ac accumsan fringilla. Vivamus id egestas ligula. Nullam mauris elit, 
-        efficitur sit amet ultrices eu, pellentesque at diam. Cras ac nulla fermentum, tempor lectus a, tincidunt ligula. Phasellus pretium 
-        dapibus eros, ut interdum nunc iaculis eget. Mauris sagittis porttitor interdum. Suspendisse ante diam, scelerisque ac vestibulum ut, 
-        faucibus sed enim. Morbi aliquet mauris in turpis aliquam volutpat. Vivamus velit est, aliquam non egestas vel, posuere ut magna.
-    </p>
+        <h1 class="titre-section">Bienvenue sur FormaCenter</h1>
 
+        <p class="home__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a nibh non neque semper molestie vel eu ipsum. In nec diam turpis. 
+            Vestibulum posuere ullamcorper ornare. Morbi interdum tellus ac accumsan fringilla. Vivamus id egestas ligula. Nullam mauris elit, 
+            efficitur sit amet ultrices eu, pellentesque at diam. Cras ac nulla fermentum, tempor lectus a, tincidunt ligula. Phasellus pretium 
+            dapibus eros, ut interdum nunc iaculis eget. Mauris sagittis porttitor interdum. 
+        </p>
+
+        <div class="home__login">
+            <a href="{{path("app_register")}}" class="button home__register-btn">Inscription</a>
+            <a href="{{path("app_login")}}" class="button home__login-btn">Connexion</a>
+        </div>
+
+    </section>
 {% endblock %}

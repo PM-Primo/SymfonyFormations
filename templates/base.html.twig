@@ -7,6 +7,7 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
@@ -15,27 +16,40 @@
         {% endblock %}
     </head>
     <body>
-
-        <nav>
-            {% if app.user %}
-                <div id="nav_gauche">
-                    <a href="{{path("app_module_formation")}}">Modules</a>
-                    <a href="{{path("app_session_formation")}}">Sessions</a>
-                    <a href="{{path("app_stagiaire")}}">Stagiaires</a>
-                </div>
-            {% endif %}
-            <div id="nav_droite">
+        <header class="header">
+            <nav class="nav">
                 {% if app.user %}
-                    <a href="{{path("app_logout")}}">Déconnexion</a>
-                    {% if is_granted('ROLE_ADMIN') %} <a href="{{path("admin_users")}}">Panneau d'admin</a>{% endif %}
-                {% else %}
-                    <a href="{{path("app_login")}}">Connexion</a>
-                    <a href="{{path("app_register")}}">Inscription</a>
+                    <div class="nav__user-btn" id="nav-toggle">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <div class="nav__user-menu" id="nav-user-menu">
+                        <ul class="nav__list">
+                            <li class="nav__item">
+                                <a href="{{path("app_logout")}}">Déconnexion</a>
+                            </li>
+                            {% if is_granted('ROLE_ADMIN') %} 
+                                <li class="nav__item">
+                                    <a href="{{path("admin_users")}}">Panneau d'admin</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 {% endif %}
-            </div>
+                    <h1 class="header__logo">FormaCenter</h1>
+                {% if app.user %}
+                    <div class="nav__droite">
+                        <a href="{{path("app_module_formation")}}">Modules</a>
+                        <a href="{{path("app_session_formation")}}">Sessions</a>
+                        <a href="{{path("app_stagiaire")}}">Stagiaires</a>
+                    </div>
+                {% endif %}
+            </nav>
+        </header>
 
-        </nav>
-
-        {% block body %}{% endblock %}
+        <main>
+            {% block body %}
+            
+            {% endblock %}
+        </main>
     </body>
 </html>

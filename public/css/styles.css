@@ -1,6 +1,7 @@
 /*=============== GOOGLE FONTS ===============*/
 
 @import url('https://fonts.googleapis.com/css2?family=Halant:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /*=============== VARIABLES CSS ===============*/
 
@@ -9,7 +10,7 @@
 
     /*========== Colors ==========*/
     --first-color: hsl(251, 64%, 54%);
-    --first-color-alt: hsl(251, 64%, 50%);
+    --first-color-alt: hsl(251, 64%, 40%);
     --title-color: hsl(251, 16%, 15%);
     --text-color: hsl(251, 16%, 35%);
     --text-color-light: hsl(251, 8%, 55%);
@@ -19,7 +20,7 @@
 
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
-    --title-font: "Halant", serif;
+    --title-font: "Playfair Display", serif;
     --biggest-font-size: 2.25rem;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
@@ -30,6 +31,10 @@
     /*========== Font weight ==========*/
     --font-medium: 400;
     --font-bold: 600;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
     
 }
 
@@ -54,11 +59,12 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 100%;
 }
 
 body {
     font-family: var(--body-font);
-    /* font-size: var(--normal-font-size); */
+    font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
     /* transition: background 0.4s; for dark mode animation */
@@ -67,6 +73,12 @@ body {
 h1, h2 {
     color: var(--title-color);
     font-weight: var(--font-medium);
+    text-align: center;
+}
+
+h1{
+    font-family: var(--title-font);
+    font-weight: var(--font-bold);
 }
 
 ul {
@@ -80,4 +92,87 @@ a {
 img {
     max-width: 100%;
     height: auto;
+}
+
+/*=============== THEME ===============*/
+
+    /*======== Variables Dark Theme ========*/
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+
+.titre-section{
+    margin-bottom: 3rem;
+}
+
+.section{
+    margin-top: 6rem;
+}
+
+
+/*=============== HEADER & NAV ===============*/
+
+.header{
+    position:fixed;
+    width: 100%;
+    background-color: var(--body-color);
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav{
+    height: var(--header-height);
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nav__user-btn{
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.nav__list{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 2rem;
+}
+
+.header__logo{
+    font-style: italic;
+    /* color: var(--first-color); */
+}
+
+/*=============== HOME ===============*/
+
+.home__text{
+    padding-inline: 1rem;
+}
+
+.home__login{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    justify-content : center;
+}
+
+.button{
+    background-color: var(--first-color);
+    padding: .75rem 1.2rem;
+    border-radius: 4rem;
+    color: #fff;
+    transition: background .3s;
+}
+
+.button:hover{
+    background-color: var(--first-color-alt);
 }
