@@ -16,6 +16,7 @@
     --text-color-light: hsl(251, 8%, 55%);
     --body-color: hsl(251, 100%, 96%);
     --container-color: hsl(251, 100%, 97%);
+    --input-border-color: hsl(250, 8%, 75%);
 
 
     /*========== Font and typography ==========*/
@@ -117,10 +118,15 @@ img {
     transition: background .3s;
     font-size: var(--normal-font-size);
     font-family: var(--body-font);
+    cursor: pointer;
 }
 
 .button:hover{
     background-color: var(--first-color-alt);
+}
+
+.button-valider{
+    margin-top: 3rem;
 }
 
 .icon-background {
@@ -137,6 +143,7 @@ img {
     top: 3rem;
 }
 
+
 /*=============== FORMS ===============*/
 
 .form-group{
@@ -150,6 +157,14 @@ img {
     flex-direction: column;
     align-items: center;
     row-gap: 1rem;
+}
+
+input{
+    border: 1px solid var(--input-border-color);
+    border-radius: .33rem;
+    background-color: #fff;
+    height: 1.5rem;
+    padding-left: .8rem;
 }
 
 
@@ -212,6 +227,9 @@ img {
 /*=============== REGISTER ===============*/
 
 .form-terms{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
     margin-top: .9rem;
     margin-bottom: 1.5rem;
 }
