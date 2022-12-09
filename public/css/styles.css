@@ -123,6 +123,20 @@ img {
     background-color: var(--first-color-alt);
 }
 
+.icon-background {
+    color: var(--first-color);
+}
+
+.back-arrow{
+    color: #fff;
+}
+
+.back-arrow-stack{
+    position: absolute;
+    left: .9rem;
+    top: 3rem;
+}
+
 /*=============== FORMS ===============*/
 
 .form-group{
