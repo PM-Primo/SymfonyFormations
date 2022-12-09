@@ -15,13 +15,19 @@
 
         <form class="formulaire">
             {{ form_start(registrationForm) }}
+
                 {% form_theme registrationForm.email 'forms/fields.twig' %}
-                {# {{ form_row(registrationForm.email) }} #}
+                {{ form_row(registrationForm.email) }}
+
+                {% form_theme registrationForm.pseudo 'forms/fields.twig' %}
                 {{ form_row(registrationForm.pseudo) }}
 
+                {% form_theme registrationForm.plainPassword 'forms/fields.twig' %}
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Mot de passe '
                 }) }}
+
+                {% form_theme registrationForm.agreeTerms 'forms/terms.twig' %}
                 {{ form_row(registrationForm.agreeTerms) }}
 
                 <button type="submit" class="button valider-btn">Valider</button>
