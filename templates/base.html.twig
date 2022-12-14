@@ -19,11 +19,17 @@
         <header class="header">
             <nav class="nav">
                 {% if app.user %}
-                    <div class="nav__user-btn" id="nav-toggle">
-                        <i class="fa-regular fa-user"></i>
-                    </div>
-                    <div class="nav__user-menu" id="nav-user-menu">
+                    <div class="nav__menu" id="nav-menu">
                         <ul class="nav__list">
+                            <li class="nav__item">
+                                <a href="{{path("app_module_formation")}}">Modules</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="{{path("app_session_formation")}}">Sessions</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="{{path("app_stagiaire")}}">Stagiaires</a>
+                            </li>
                             <li class="nav__item">
                                 <a href="{{path("app_logout")}}">Déconnexion</a>
                             </li>
@@ -33,16 +39,23 @@
                                 </li>
                             {% endif %}
                         </ul>
+
+                        <div class="nav__close" id="nav-close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+
+                        <div class="nav__buttons">
+                            <i class="fa-solid fa-moon"></i>        
+                            <div class="nav__toggle" id="nav-toggle">
+                                <i class="fa-solid fa-bars"></i>                            
+                            </div>
+                        </div>
+
                     </div>
                 {% endif %}
-                    <h1 class="header__logo">FormaCenter</h1>
-                {% if app.user %}
-                    <div class="nav__droite">
-                        <a href="{{path("app_module_formation")}}">Modules</a>
-                        <a href="{{path("app_session_formation")}}">Sessions</a>
-                        <a href="{{path("app_stagiaire")}}">Stagiaires</a>
-                    </div>
-                {% endif %}
+
+                <h1 class="header__logo">FormaCenter</h1>
+
             </nav>
         </header>
 
