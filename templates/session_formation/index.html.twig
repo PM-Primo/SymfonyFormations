@@ -4,63 +4,65 @@
 
 {% block body %}
 
-    <h1>Sessions de formation</h1>
+    <section class="home__section section">
 
-    <a href="{{path('add_session_formation')}}">Ajouter une session</a><br><br>
+        <h1>Sessions de formation</h1>
 
-    <h2>Sessions en cours</h2>
+        <a href="{{path('add_session_formation')}}">Ajouter une session</a><br><br>
 
-    {% for session in sessionsEnCours %}
+        <h2>Sessions en cours</h2>
 
-        <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
-        Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
+        {% for session in sessionsEnCours %}
 
-        {% if session.participants|length != session.nbPlaces %}
-            {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles<br>
-        {% else %}
-            Session complète !<br>
-        {% endif %}
+            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
+            Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
 
-        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> / <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a><br>
-        <br>        
+            {% if session.participants|length != session.nbPlaces %}
+                {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles<br>
+            {% else %}
+                Session complète !<br>
+            {% endif %}
 
-    {% endfor %}
+            <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> / <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a><br>
+            <br>        
 
-    <h2>Sessions à venir</h2>
+        {% endfor %}
 
-    {% for session in sessionsAVenir %}
+        <h2>Sessions à venir</h2>
 
-        <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
-        Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
-        
-        {% if session.participants|length != session.nbPlaces %}
-            {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles<br>
-        {% else %}
-            Session complète !<br>
-        {% endif %}
+        {% for session in sessionsAVenir %}
 
-        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> / <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a><br>
-        <br>        
+            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
+            Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
+            
+            {% if session.participants|length != session.nbPlaces %}
+                {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles<br>
+            {% else %}
+                Session complète !<br>
+            {% endif %}
 
-    {% endfor %}
+            <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> / <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a><br>
+            <br>        
 
-    <h2>Sessions passées</h2>
+        {% endfor %}
 
-    {% for session in sessionsPassees %}
+        <h2>Sessions passées</h2>
 
-        <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
-        Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
-        
-        {% if session.participants|length != session.nbPlaces %}
-            {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles<br>
-        {% else %}
-            Session complète !<br>
-        {% endif %}
+        {% for session in sessionsPassees %}
 
-        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> / <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a><br>
-        <br>        
+            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session.intituleSession}}</a><br>
+            Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
+            
+            {% if session.participants|length != session.nbPlaces %}
+                {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles<br>
+            {% else %}
+                Session complète !<br>
+            {% endif %}
 
-    {% endfor %}
+            <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> / <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a><br>
+            <br>        
 
+        {% endfor %}
+    </section>
 
 {% endblock %}
