@@ -183,7 +183,11 @@ img {
     margin-block: 3rem;
 }
 
-
+.two-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem
+}
 
 /*=============== FORMS ===============*/
 

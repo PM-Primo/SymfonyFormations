@@ -22,8 +22,11 @@
                 {# </div> #}
                 {{ form_row(formAddSessionFormation.nb_places, {'label': 'Nombre de places disponibles'}) }}
 
-                {{ form_widget(formAddSessionFormation.submit, { 'label': 'Valider' }) }}
 
+                <div class="two-buttons">
+                    <a href="{{path('app_session_formation')}}" class="button button-purple button-valider">Annuler</a>
+                    {{ form_widget(formAddSessionFormation.submit, { 'label': 'Valider' }) }}
+                </div>
 
             {{ form_end(formAddSessionFormation) }}
         </form>
