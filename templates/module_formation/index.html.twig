@@ -3,24 +3,27 @@
 {% block title %}Modules de formation{% endblock %}
 
 {% block body %}
+    <section class="section container">
+        <h1 class="titre-section">Liste des modules de formation</h1>
 
-    <h1>Liste des modules de formation</h1>
+        <div class="button-nvsession"><a href="{{path('add_module_formation')}}" class="button button-green" >Nouveau module</a></div>
 
+        {% for categorie in categories %}
 
-    <a href="{{path('add_module_formation')}}">Ajouter un module</a>
+            <h2 class="titre-soussection">{{categorie}}</h2>
+            
+            {% for module in modules %}
 
-    {% for categorie in categories %}
+                {% if module.categorie == categorie %}
+                    <span class="liste-modules__module">
+                        {{module}}
+                        &nbsp&nbsp<a href="{{path('edit_module_formation',{'id':module.id})}}"><i class="fa-solid fa-pen-to-square link"></i></a>
+                        &nbsp<a href="{{path('delete_module_formation',{'id':module.id})}}"><i class="fa-solid fa-trash-can link"></i></a><br>
+                    </span>
+                {% endif %}
 
-        <h2>{{categorie}}</h2>
-        
-        {% for module in modules %}
-
-            {% if module.categorie == categorie %}
-                {{module}} <a href="{{path('edit_module_formation',{'id':module.id})}}">Editer</a> / <a href="{{path('delete_module_formation',{'id':module.id})}}">Supprimer</a><br>
-            {% endif %}
+            {% endfor %}
 
         {% endfor %}
-
-    {% endfor %}
-
+    </section>
 {% endblock %}
