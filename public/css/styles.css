@@ -445,3 +445,28 @@ input{
     width: fit-content;
     margin-inline: auto;
 }
+
+/*=============== RESPONSIVE =============*/
+
+@media screen and (min-width: 768px){
+    .nav{
+        column-gap: 3rem;
+    }
+
+    .nav__toggle,
+    .nav__close
+    {
+        display: none;
+    }
+
+    .nav__list{
+        flex-direction: row;
+        column-gap: 3rem;
+    }
+
+    .nav__menu{
+        margin-left: auto;
+    }
+}
+
+
