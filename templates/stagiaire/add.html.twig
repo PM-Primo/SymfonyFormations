@@ -3,24 +3,35 @@
 {% block title %}Ajouter un stagiaire{% endblock %}
 
 {% block body %}
+    <section class="section container">
 
-    {% if edit %}
-        <h1>Éditer le profil d'un stagiaire</h1>
-    {% else %}
-        <h1>Ajouter un stagiaire</h1>
-    {% endif %}
+        {% if edit %}
+            <h1 class="titre-section">Éditer le profil d'un stagiaire</h1>
+        {% else %}
+            <h1 class="titre-section">Ajouter un stagiaire</h1>
+        {% endif %}
 
-    {{ form_start(formAddStagiaire) }}
+        <form class="formulaire">
+            {{ form_start(formAddStagiaire) }}
 
-        {{ form_row(formAddStagiaire.prenom_stagiaire) }}
-        {{ form_row(formAddStagiaire.nom_stagiaire) }}
-        {{ form_row(formAddStagiaire.sexe) }}
-        {{ form_row(formAddStagiaire.date_naissance) }}
-        {{ form_row(formAddStagiaire.ville) }}
-        {{ form_row(formAddStagiaire.email) }}
-        {{ form_row(formAddStagiaire.telephone) }}
+                {% form_theme formAddStagiaire 'forms/fields.twig' %}
 
-    {{ form_end(formAddStagiaire) }}
+                {{ form_row(formAddStagiaire.prenom_stagiaire, {'label': 'Prénom'}) }}
+                {{ form_row(formAddStagiaire.nom_stagiaire, {'label': 'Nom'}) }}
+                {{ form_row(formAddStagiaire.sexe, {'label': 'Sexe'}) }}
+                {{ form_row(formAddStagiaire.date_naissance, {'label': 'Date de naissance'}) }}
+                {{ form_row(formAddStagiaire.ville, {'label': 'Ville'}) }}
+                {{ form_row(formAddStagiaire.email, {'label': 'E-mail'}) }}
+                {{ form_row(formAddStagiaire.telephone, {'label': 'N° de téléphone'}) }}
 
+                <div class="two-buttons">
+                    <a href="{{path('app_stagiaire')}}" class="button button-purple button-valider">Annuler</a>
+                    {{ form_widget(formAddStagiaire.submit, { 'label': 'Valider' }) }}
+                </div>
+
+            {{ form_end(formAddStagiaire) }}
+        </form>
+
+    </section>
 
 {% endblock %}

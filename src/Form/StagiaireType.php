@@ -23,7 +23,7 @@ class StagiaireType extends AbstractType
         ->add('email' , TextType::class, ["attr" => ["class" => "form-control"]])
         ->add('telephone' , TextType::class, ["attr" => ["class" => "form-control"]])
 
-        ->add('submit', SubmitType::class, ["attr" => ["class" => "btn btn-success"]])
+        ->add('submit', SubmitType::class, ["attr" => ["class" => "button button-purple button-valider"]])
         ;
     }
 
