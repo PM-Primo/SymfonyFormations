@@ -3,21 +3,22 @@
 {% block title %}Liste des stagiaires{% endblock %}
 
 {% block body %}
+    <section class="section container">
+        <h1>Liste des stagiaires</h1>
 
-    <h1>Liste des stagiaires</h1>
+        <div class="button-nvsession"><a href="{{path('add_stagiaire')}}" class="button button-green">Nouveau stagiaire</a></div>
 
-    <a href="{{path('add_stagiaire')}}">Ajouter un stagiaire</a><br><br>
-
-
-    {% for stagiaire in stagiaires %}
-
-        <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}">{{stagiaire}}</a> ({{stagiaire.sexe}})<br>
-        Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
-        {{stagiaire.email}}<br>
-        {{stagiaire.telephone}}<br>
-        <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}">Éditer</a> / <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}">Supprimer</a><br>
-        <br>        
-
-    {% endfor %}
-
+        <div class="card-container">
+            {% for stagiaire in stagiaires %}
+                <div class="card">
+                    <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}" class="link">{{stagiaire}}</a> ({{stagiaire.sexe}})&nbsp&nbsp
+                    <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}"><i class="fa-solid fa-pen-to-square link"></i></a>&nbsp&nbsp
+                    <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}"><i class="fa-solid fa-trash-can link"></i></a><br>      
+                    Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
+                    {{stagiaire.email}}<br>
+                    {{stagiaire.telephone}}<br>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
