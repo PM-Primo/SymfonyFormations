@@ -19,7 +19,7 @@ class ModuleFormationType extends AbstractType
             ->add('nom_module' , TextType::class, ["attr" => ["class" => "form-control"]])
             ->add('categorie', EntityType::class, ['class' => Categorie::class, 'choice_label' => 'nom_categorie',"attr" => ["class" => "form-control"]])
         
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "btn btn-success"]])
+            ->add('submit', SubmitType::class, ["attr" => ["class" => "button button-purple button-valider"]])
         ;
 
     }

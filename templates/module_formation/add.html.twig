@@ -3,22 +3,28 @@
 {% block title %}Ajouter un module{% endblock %}
 
 {% block body %}
+    <section class="section container">
+        {% if edit %}
+            <h1 class="titre-section">Éditer un module</h1>
+        {% else %}
+            <h1 class="titre-section ">Ajouter un module</h1>
+        {% endif %}
+    </section>
 
-    {% if edit %}
-        <h1>Éditer un module</h1>
-    {% else %}
-        <h1>Ajouter un module</h1>
-    {% endif %}
+    <form class="formulaire">
+        {{ form_start(formAddModuleFormation) }}
+            
+            {% form_theme formAddModuleFormation 'forms/fields.twig' %}
 
+            {{ form_row(formAddModuleFormation.nom_module , {'label': 'Intitulé du module'}) }}
+            {{ form_row(formAddModuleFormation.categorie, {'label': 'Catégorie'}) }}
 
-    {{ form_start(formAddModuleFormation) }}
+            <div class="two-buttons">
+                <a href="{{path('app_module_formation')}}" class="button button-purple button-valider">Annuler</a>
+                {{ form_widget(formAddModuleFormation.submit, { 'label': 'Valider' }) }}
+            </div>
 
-        <div class="nomPrenom">
-            {{ form_row(formAddModuleFormation.nom_module) }}
-            {{ form_row(formAddModuleFormation.categorie) }}
-        </div>
-
-    {{ form_end(formAddModuleFormation) }}
-
+        {{ form_end(formAddModuleFormation) }}
+    </form>
 
 {% endblock %}
