@@ -20,20 +20,20 @@
                     <div class="nav__menu" id="nav-menu">
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="{{path("app_module_formation")}}" class="nav__link">Modules</a>
+                                <a href="{{path("app_module_formation")}}" class="link">Modules</a>
                             </li>
                             <li class="nav__item">
-                                <a href="{{path("app_session_formation")}}" class="nav__link">Sessions</a>
+                                <a href="{{path("app_session_formation")}}" class="link">Sessions</a>
                             </li>
                             <li class="nav__item">
-                                <a href="{{path("app_stagiaire")}}" class="nav__link">Stagiaires</a>
+                                <a href="{{path("app_stagiaire")}}" class="link">Stagiaires</a>
                             </li>
                             <li class="nav__item">
-                                <a href="{{path("app_logout")}}" class="nav__link">Déconnexion</a>
+                                <a href="{{path("app_logout")}}" class="link">Déconnexion</a>
                             </li>
                             {% if is_granted('ROLE_ADMIN') %} 
                                 <li class="nav__item">
-                                    <a href="{{path("admin_users")}}" class="nav__link">Panneau d'admin</a>
+                                    <a href="{{path("admin_users")}}" class="link">Panneau d'admin</a>
                                 </li>
                             {% endif %}
                         </ul>

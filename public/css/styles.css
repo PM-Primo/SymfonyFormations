@@ -44,6 +44,7 @@
         --biggest-font-size: 4rem;
         --h1-font-size: 2.25rem;
         --h2-font-size: 1.5rem;
+        --h2-font-size: 1.2rem;
         --normal-font-size: 1rem;
         --small-font-size: .875rem;
         --smaller-font-size: .813rem;
@@ -71,7 +72,7 @@ body {
     /* transition: background 0.4s; for dark mode animation */
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: var(--title-color);
     text-align: center;
     font-family: var(--title-font);
@@ -84,6 +85,11 @@ h1{
 
 h2{
     font-size: var(--h2-font-size);
+}
+
+h3{
+    font-size: var(--h3-font-size);
+    margin-block: .75rem;
 }
 
 ul {
@@ -130,6 +136,7 @@ img {
 
 .section{
     margin-top: 6rem;
+    margin-bottom: 3rem;
 }
 
 .icon-background {
@@ -385,4 +392,56 @@ input{
 
 .liste-modules__module{
     margin-left: 20% ;
+}
+
+/*=============== DETAILS SESSION =============*/
+
+.show-session__titre{
+    margin-bottom: .5rem;
+}
+
+.show-session__infos{
+    text-align: center;
+}
+
+.show-session__liste-programmes{
+    text-align: center;
+}
+
+.show-session__button-unsub{
+    color:  hsl(20, 63%, 73%) ;
+    transition: color .5s;
+}
+
+.show-session__button-unsub:hover{
+    color:  hsl(20, 63%, 53%) ;
+}
+
+.show-session__form{
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem
+}
+
+.show-session__form-add{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color :hsl(115, 64%, 53%);
+    transition: color .5s;
+}
+
+.show-session__form-add:hover{
+    color :hsl(115, 64%, 33%);
+}
+
+.show-session__participants{
+    text-align: right;
+    width: fit-content;
+    margin-inline: auto;
 }

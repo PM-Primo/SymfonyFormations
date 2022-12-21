@@ -4,89 +4,104 @@
 
 {% block body %}
 
+    <section class="section container">
 
-    <h1>{{session.intituleSession}}</h1>
-    <h2> Du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br></h2>
+        <h1 class="show-session__titre">
+            {{session.intituleSession}}&nbsp&nbsp
+            <a href="{{path('edit_session_formation', {'id':session.id})}}"><i class="fa-solid fa-pen-to-square link"></i></a>&nbsp
+            <a href="{{path('delete_session_formation', {'id':session.id})}}"><i class="fa-solid fa-trash-can link"></i></a>
+        </h1>
 
-    {% if session.nbPlaces != session.participants|length %}
+        <div class="show-session__infos"> 
 
-        {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles
+            du {{session.dateDebut | date("d-m-Y")}} au {{session.dateFin | date("d-m-Y")}}<br>
 
-    {% else %}
-        Session complète !
-    {% endif %}
+            {% if session.nbPlaces != session.participants|length %}
 
-    <p>
-        <a href="{{path('edit_session_formation', {'id':session.id})}}">Éditer</a> /
-        <a href="{{path('delete_session_formation', {'id':session.id})}}">Supprimer</a>
-    </p>
+                {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles
 
-    <h2>Modules compris dans la session</h2>
-
-
-
-    {% if session.programmes | length == 0 %}
-        <p>Aucun module pour l'instant</p>
-    {% else %}
-    
-        {% for categorie in categories %}
-               
-            <h2>{{categorie}}</h2>
-
-            {% for programme in session.programmes %}
-                {% if programme.moduleFormation.categorie == categorie %}
-                    {{programme.moduleFormation}} : {{programme.nbJours}} j <a href="{{path('delete_programme', {'idsess':session.id , 'idprog':programme.id})}}">[déprogrammer]</a><br>
-                {% endif %}
-            {% endfor %}
-
-        {% endfor %}
-
-
-    {% endif %}
-
-    <h2>Modules non programmés</h2>
-
-    {% if nonProgrammes | length == 0 %}
-        <p>Aucun module à programmer</p>
-    {% else %}
-            {% for module in nonProgrammes %}
-                {{module}}
-                <form method="POST" action="{{ path('add_programme', {'idsess' : session.id,'idmod' : module.id }) }}">
-                    <input type="number" min="1" id="nbJours" name="nbJours" required> jours
-                    <button type="submit" name="submit">+</button>
-                </form>
-                <br>
-            {% endfor %}
-    {% endif %}
-
-    <h2>Liste des participant.e.s à la session</h2>
-
-    {% if session.participants | length == 0 %}
-        <p>Aucun participant à cette session</p>
-    {% else %}
-
-        {% for participant in session.participants %}
-            <a href="{{path('show_stagiaire', {'id':participant.id})}}">{{participant}}</a> 
-            <a href="{{path('removefrom_session_formation', {'idsess':session.id , 'idstag':participant.id})}}">[désinscrire]</a><br>
-        {% endfor %}
-
-    {% endif %}
-
-    <h2>Ne participent pas à la session</h2>
-
-    {% if nonInscrits | length == 0 %}
-        <p>Aucun participant à cette session</p>
-    {% else %}
-
-        {% for stagiaire in nonInscrits %}
-            <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}">{{stagiaire}}</a>
-            {% if session.participants|length < session.nbPlaces %}
-                <a href="{{path('addto_session_formation', {'idsess':session.id , 'idstag':stagiaire.id})}}">[inscrire]</a>
+            {% else %}
+                Session complète !
             {% endif %}
-            <br>
-        {% endfor %}
 
-    {% endif %}
+        </div>
 
+        <h2 class="titre-soussection">Modules compris dans la session</h2>
+
+        {% if session.programmes | length == 0 %}
+            <p>Aucun module pour l'instant</p>
+        {% else %}
+        
+            {% for categorie in categories %}
+                
+                <h3>{{categorie}}</h3>
+
+                <div class="show-session__liste-programmes">
+                    {% for programme in session.programmes %}
+                        {% if programme.moduleFormation.categorie == categorie %}
+                            {{programme.moduleFormation}} : {{programme.nbJours}} j&nbsp&nbsp
+                            <a href="{{path('delete_programme', {'idsess':session.id , 'idprog':programme.id})}}" class="show-session__button-unsub"><i class="fa-solid fa-circle-xmark"></i></a><br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            {% endfor %}
+
+
+        {% endif %}
+
+        <h2 class="titre-soussection">Modules non programmés</h2>
+
+        {% if nonProgrammes | length == 0 %}
+            <p>Aucun module à programmer</p>
+        {% else %}
+
+                <div class="show-session__form">
+                {% for module in nonProgrammes %}
+                    <div class="show-session__form-element">
+                        {{module}}
+                        <form method="POST" action="{{ path('add_programme', {'idsess' : session.id,'idmod' : module.id }) }}">
+                            <input type="number" min="1" id="nbJours" name="nbJours" required> jours
+                            <button type="submit" name="submit" class="show-session__form-add"><i class="fa-solid fa-circle-plus"></i></button>
+                        </form>
+                    </div>
+                {% endfor %}
+                </div>
+        {% endif %}
+
+        <h2 class="titre-soussection">Liste des participant.e.s à la session</h2>
+
+        {% if session.participants | length == 0 %}
+            <p>Aucun participant à cette session</p>
+        {% else %}
+            <div class="show-session__participants">
+                {% for participant in session.participants %}
+                    <a href="{{path('show_stagiaire', {'id':participant.id})}}" class="link">{{participant}}</a> 
+                    <a href="{{path('removefrom_session_formation', {'idsess':session.id , 'idstag':participant.id})}}" class="show-session__button-unsub">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </a><br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <h2 class="titre-soussection">Ne participent pas à la session</h2>
+
+        {% if nonInscrits | length == 0 %}
+            <p>Aucun participant à cette session</p>
+        {% else %}
+
+            <div class="show-session__participants">
+                {% for stagiaire in nonInscrits %}
+                    <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}" class="link">{{stagiaire}}</a>
+                    {% if session.participants|length < session.nbPlaces %}
+                        <a href="{{path('addto_session_formation', {'idsess':session.id , 'idstag':stagiaire.id})}}" class="show-session__form-add"><i class="fa-solid fa-circle-plus"></i></a>
+                    {% endif %}
+                    <br>
+                {% endfor %}
+            </div>
+
+        {% endif %}
+
+    </section>
 
 {% endblock %}

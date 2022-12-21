@@ -44,26 +44,17 @@ class CategorieRepository extends ServiceEntityRepository
 
     public function categoriesSession(SessionFormation $session){
 
-        return $this->createQueryBuilder('c')
-        ->from('moduleFormation','mf')
-        ->join('mf.programme', 'p')
-        ->andWhere('p.sessionFormation = :sess')
-        ->setParameter('sess', $session)
-        ->groupBy('c.nom_categorie')
-        ->getQuery()
-        ->getResult();
-
-        // $entityManager = $this->getEntityManager();
-
-        // $query = $entityManager->createQuery(
-        //     'SELECT mf.categorie
-        //     FROM App\Entity\moduleFormation mf
-        //     INNER JOIN mf.programmes p
-        //     WHERE p.sessionFormation = :sess
-        //     GROUP BY mf.categorie')
-        //     ->setParameter('sess', $session);
-
-        // return $query->getResult();
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('c')
+            ->from('App\Entity\Categorie', 'c')
+            ->join('c.moduleFormation', 'mf')
+            ->join('mf.programme', 'p')
+            ->andWhere('p.sessionFormation = :sess')
+            ->setParameter('sess', $session)
+            ->groupBy('c.nom_categorie');
+        $query = $qb->getQuery();
+        return $query->getResult();
 
 
         // REQUETE SQL FONCTIONNELLE (TESTEE DANS HEIDI)
