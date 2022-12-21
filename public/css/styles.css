@@ -258,7 +258,7 @@ input{
       background-color: var(--body-color);
       width: 100%;
       box-shadow: 0 8px 20px hsla(19, 64%, 24%, .1);
-      padding-block: 3.5rem;
+      padding-block: 2rem;
       transition: top .8s;
     }
 }
@@ -267,7 +267,7 @@ input{
     display: flex;
     flex-direction: column;
     text-align: center;
-    row-gap: 2rem;
+    row-gap: 1.5rem;
 }
 
 .header__logo{
