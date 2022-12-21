@@ -3,23 +3,30 @@
 {% block title %}Ajouter une session{% endblock %}
 
 {% block body %}
+    <section class="section container">
+        {% if edit %}
+            <h1 class="titre-section">Éditer une session</h1>
+        {% else %}
+            <h1 class="titre-section">Ajouter une session</h1>
+        {% endif %}
 
-    {% if edit %}
-        <h1>Éditer une session</h1>
-    {% else %}
-        <h1>Ajouter une session</h1>
-    {% endif %}
+        <form class="formulaire">
+            {{ form_start(formAddSessionFormation) }}
 
-    {# {{ form(formAddSessionFormation) }} #}
-    {{ form_start(formAddSessionFormation) }}
+                {% form_theme formAddSessionFormation 'forms/fields.twig' %}
 
-        {{ form_row(formAddSessionFormation.intitule_session) }}
-        {{ form_row(formAddSessionFormation.date_debut) }}
-        {{ form_row(formAddSessionFormation.date_fin) }}
-        {{ form_row(formAddSessionFormation.nb_places) }}
+                {{ form_row(formAddSessionFormation.intitule_session, {'label': 'Intitulé de la session'}) }}
+                {# <div class="add-session__dates"> #}
+                    {{ form_row(formAddSessionFormation.date_debut, {'label': 'Date de début'}) }}
+                    {{ form_row(formAddSessionFormation.date_fin, {'label': 'Date de fin'}) }}
+                {# </div> #}
+                {{ form_row(formAddSessionFormation.nb_places, {'label': 'Nombre de places disponibles'}) }}
+
+                {{ form_widget(formAddSessionFormation.submit, { 'label': 'Valider' }) }}
 
 
-    {{ form_end(formAddSessionFormation) }}
-
+            {{ form_end(formAddSessionFormation) }}
+        </form>
+    </section>
 
 {% endblock %}

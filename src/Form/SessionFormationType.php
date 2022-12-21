@@ -23,7 +23,7 @@ class SessionFormationType extends AbstractType
             ->add('date_fin', DateType::class, ['widget' => 'single_text', "attr" => ["class" => "form-control"]])
             ->add('nb_places', IntegerType::class, ["attr" => ["class" => "form-control"]])
 
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "btn btn-success"]])
+            ->add('submit', SubmitType::class, ["attr" => ["class" => "button button-purple button-valider"]])
 
         ;
 

@@ -340,3 +340,12 @@ input{
     border-radius: 1.5rem;
     padding: .4rem .4rem .4rem 1rem;
 }
+
+/*=============== ADD SESSIONS ===============*/
+/* .add-session__dates{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    gap: .75rem;
+    flex-wrap: wrap;
+} */
