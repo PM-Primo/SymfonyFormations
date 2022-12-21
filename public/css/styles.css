@@ -470,3 +470,19 @@ input{
 }
 
 
+@media screen and (min-width: 1024px){
+
+    .liste-modules__module{
+        margin-left: 40%;
+    }
+
+    .form-group{
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1064px){
+    .container{
+      margin-inline: auto;
+    }
+}

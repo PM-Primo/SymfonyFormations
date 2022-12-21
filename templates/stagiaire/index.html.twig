@@ -14,7 +14,8 @@
                     <a href="{{path('show_stagiaire', {'id':stagiaire.id})}}" class="link">{{stagiaire}}</a> ({{stagiaire.sexe}})&nbsp&nbsp
                     <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}"><i class="fa-solid fa-pen-to-square link"></i></a>&nbsp&nbsp
                     <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}"><i class="fa-solid fa-trash-can link"></i></a><br>      
-                    Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
+                    Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}}<br>
+                    À {{stagiaire.ville}}<br>
                     {{stagiaire.email}}<br>
                     {{stagiaire.telephone}}<br>
                 </div>
