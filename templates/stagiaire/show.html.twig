@@ -1,34 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détails du stagiaire{% endblock %}
+{% block title %}{{stagiaire}}{% endblock %}
 
 {% block body %}
+    <section class="section container">
+
+        <a href="{{path('app_stagiaire')}}" class="back-arrow-stack">
+            <span class="fa-stack back-arrow-stack">
+                <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                <i class="fa fa-arrow-left fa-stack-1x back-arrow"></i>
+            </span>
+        </a>
+
+        <h1 class="titre-section">{{stagiaire}}</h1>
+
+        <p>
+            {{stagiaire}} ({{stagiaire.sexe}})&nbsp&nbsp
+            <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}"><i class="fa-solid fa-pen-to-square link"></i></a>&nbsp&nbsp
+            <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}"><i class="fa-solid fa-trash-can link"></i></a>
+            <br>
+            Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
+            {{stagiaire.email}}<br>
+            {{stagiaire.telephone}}<br>    
+        </p>
 
 
-    <h1>{{stagiaire}}</h1>
 
-    <p>
-        {{stagiaire}} ({{stagiaire.sexe}})<br>
-        Né(e) le {{stagiaire.dateNaissance | date("d-m-Y")}} à {{stagiaire.ville}}<br>
-        {{stagiaire.email}}<br>
-        {{stagiaire.telephone}}<br>    
-    </p>
-    <p>
-        <a href="{{path('edit_stagiaire',{'id':stagiaire.id})}}">Éditer</a> 
-        / <a href="{{path('delete_stagiaire',{'id':stagiaire.id})}}">Supprimer</a>
-    </p>
+        {% if stagiaire.sessionsFormation | length == 0 %}
+            <p>Inscrit(e) à aucune session pour l'instant</p>
+        {% else %}
 
-    {% if stagiaire.sessionsFormation | length == 0 %}
-        <p>Inscrit(e) à aucune session pour l'instant</p>
-    {% else %}
+            <h2 class="titre-soussection">Inscrit(e) aux sessions :</h2>
 
-        <h2>Inscrit(e) aux sessions :</h2>
+            <div class="card-container">
+            {% for session in stagiaire.sessionsFormation %}
+                <div class="card">
+                    <a href="{{path('show_session_formation', {'id':session.id})}}" class="link">{{session.intituleSession}}</a><br>
+                    Du {{session.dateDebut | date("d-m-Y")}}<br>
+                    Au {{session.dateFin | date("d-m-Y")}}<br>
+                    {% if session.participants|length != session.nbPlaces %}
+                        {{session.nbPlaces - session.participants|length}}/{{session.nbPlaces}} places disponibles
+                    {% else %}
+                        Session complète !
+                    {% endif %}
+                    <a href="{{path('removesessionfrom_stagiaire', {'idsess':session.id , 'idstag':stagiaire.id})}}" class="button-unsub"><i class="fa-solid fa-circle-xmark"></i></a><br>
+                </div>
+            {% endfor %}
+            </div>
 
-        {% for session in stagiaire.sessionsFormation %}
-            <a href="{{path('show_session_formation', {'id':session.id})}}">{{session}}</a> 
-            <a href="{{path('removesessionfrom_stagiaire', {'idsess':session.id , 'idstag':stagiaire.id})}}">[désinscrire]</a><br>
-        {% endfor %}
-
-    {% endif %}
+        {% endif %}
+    </section>
 
 {% endblock %}

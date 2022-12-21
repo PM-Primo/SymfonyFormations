@@ -75,9 +75,6 @@ h1, h2 {
     color: var(--title-color);
     font-weight: var(--font-medium);
     text-align: center;
-}
-
-h1{
     font-family: var(--title-font);
     font-weight: var(--font-bold);
 }
@@ -117,6 +114,11 @@ img {
 
 .titre-section{
     margin-bottom: 3rem;
+}
+
+.titre-soussection{
+    margin-block: 2rem;
+    font-size: var(--h2-font-size);
 }
 
 .section{
@@ -182,6 +184,7 @@ img {
 .button-nvsession{
     margin-block: 3rem;
 }
+
 
 .two-buttons{
     display: flex;
@@ -343,6 +346,7 @@ input{
     box-shadow: 0 2px 8px hsla(19, 64%, 24%, .1);
     border-radius: 1.5rem;
     padding: .4rem .4rem .4rem 1rem;
+    position: relative;
 }
 
 /*=============== ADD SESSIONS ===============*/
@@ -353,3 +357,19 @@ input{
     gap: .75rem;
     flex-wrap: wrap;
 } */
+
+
+/*=============== SHOW STAGIAIRE ===============*/
+
+.button-unsub{
+    font-size: 18pt;
+    position: absolute;
+    right : .8rem;
+    top : .1rem;
+    color:  hsl(20, 63%, 73%) ;
+    transition: color .5s;
+}
+
+.button-unsub:hover{
+    color:  hsl(20, 63%, 53%) ;
+}
