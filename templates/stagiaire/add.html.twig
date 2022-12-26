@@ -10,9 +10,8 @@
         {% else %}
             <h1 class="titre-section">Ajouter un stagiaire</h1>
         {% endif %}
-
-        <form class="formulaire">
-            {{ form_start(formAddStagiaire) }}
+        <div>
+            {{ form_start(formAddStagiaire, { 'attr' : { 'class': 'formulaire' } }) }}
 
                 {% form_theme formAddStagiaire 'forms/fields.twig' %}
 
@@ -30,8 +29,7 @@
                 </div>
 
             {{ form_end(formAddStagiaire) }}
-        </form>
-
+            </div>
     </section>
 
 {% endblock %}

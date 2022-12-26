@@ -10,8 +10,7 @@
             <h1 class="titre-section">Ajouter une session</h1>
         {% endif %}
 
-        <form class="formulaire">
-            {{ form_start(formAddSessionFormation) }}
+            {{ form_start(formAddSessionFormation, { 'attr' : { 'class': 'formulaire' } }) }}
 
                 {% form_theme formAddSessionFormation 'forms/fields.twig' %}
 
@@ -29,7 +28,7 @@
                 </div>
 
             {{ form_end(formAddSessionFormation) }}
-        </form>
+            
     </section>
 
 {% endblock %}
